@@ -1,0 +1,56 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System-specific files
+*.swp
+*.bak
+*.tmp
+*.pid
+*.seed
+*.log
+
+# Package lock files (optional)
+package-lock.json
+yarn.lock
+
+# Optional npm cache directory
+.npm/
+
+# Firebase-related files (if applicable)
+firebase-debug.log
+.firebaserc
+.firebase/
+# SSL Certificates
+*.crt
+*.key
+
+# Firebase files
+firebase.json
+
+# Temporary files
+tmp/
+temp/
