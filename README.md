@@ -1,5 +1,8 @@
-Developed a MERN stack application to enable users to upload images, leveraging Multer for local handling
-and integration with Cloudinary for secure and efficient cloud storage.
+Full-Stack Development with Next.js: Developed the frontend using Next.js to leverage server-side rendering
+and improved SEO.
+
+State Management with Context API: Integrated the Context API for global state management, ensuring
+smooth data flow and real-time updates across components, which enhanced the overall user experience.
 
 Designed and implemented RESTful APIs using Node.js and Express, ensuring robust server-side functionality
 and scalable image management.
