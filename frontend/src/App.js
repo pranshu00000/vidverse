@@ -9,10 +9,10 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path='/img-upload' element={<ImgUploadPage/>}></Route>
-                <Route path="/home" element={<Homepg />} />
+                <Route path="/" element={<Homepg />} />
             </Routes>
         </Router>
     );

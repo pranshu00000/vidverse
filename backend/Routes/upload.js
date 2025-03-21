@@ -14,26 +14,36 @@ const router=express.Router()
 
   router.post('/upload'
     // ,authenticateToken
-    ,upload.single('image'),async(req,res)=>{
-    const path=req.file.path;
+    ,upload.fields([{name:'image',maxCount:1},{name:'video',maxCount:1}]),
+    async(req,res)=>{
+    const imagePath=req.files['image']?req.files['image'][0].path:null;
+    const videoPath=req.files['video']?req.files['video'][0].path:null;
     const {description}=req.body;
     try{
+      let imageUrl=null;
+      let videoUrl=null;
 
-    const result=await  cloudinaryConfig.cloudinary.uploader.upload(path)
-        console.log(req.body);
-        
-        
-          // Delete the local file after uploading to Cloudinary
-          fs.unlinkSync(path);
+      if(imagePath){
+        const imageResult=await cloudinaryConfig.cloudinary.uploader.upload(imagePath);
+        imageUrl=imageResult.secure_url
+        fs.unlinkSync(imagePath);
+
+      }
+
+      if(videoPath){
+        const videoResult=await cloudinaryConfig.cloudinary.uploader.upload(videoPath, { resource_type: 'video' });
+        videoUrl=videoResult.secure_url
+        fs.unlinkSync(videoPath)
+      }
       
-          uploadData=new ImgUpload({
-              thumbnail:result.secure_url,
+        const  uploadData=new ImgUpload({
+              thumbnail:imageUrl,
+              video:videoUrl,
               description:description
             })
             await uploadData.save()
             // Send Cloudinary URL response
             res.json({ 
-                imageUrl: result.secure_url,
                 data:uploadData
             });
     
@@ -41,7 +51,7 @@ const router=express.Router()
   }
   catch(err){
     console.error("error in uploading database",err)
-    res.status(500).send({error:'failed to upload data and save image'})
+    res.status(500).send({error:'failed to upload data and save mediaf'})
   }
 })
 
