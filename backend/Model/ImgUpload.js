@@ -7,6 +7,10 @@ const mongoose=require('mongoose')
     description:{
         type:String,
         required:true
+    },
+    video:{
+        type:String,
+        required:true
     }
  },{timestamps:true})
  module.exports=mongoose.model('ImgUpload',UploadSchema)

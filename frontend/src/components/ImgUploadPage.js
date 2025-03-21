@@ -33,7 +33,7 @@ const ImageUpload = () => {
     try {
       // POST request to the backend API
       const token=localStorage.getItem('authToken')
-      const response = await axios.post('/api/img/upload', formData, 
+      const response = await axios.post('http://localhost:8000/api/img/upload', formData, 
         {
           'Authorization': `Bearer ${token}`, // Pass token in Authorization header
           'Content-Type': 'multipart/form-data', // Set Content-Type for file uploads 
