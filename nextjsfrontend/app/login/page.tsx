@@ -3,6 +3,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface FormData {
   email: string;
@@ -45,7 +46,7 @@ const Page = () => {
       style={{ backgroundImage: `url(/background.jpg)` }} // Next.js static image handling
     >
       <div>
-        <img className="h-28 w-28 mb-10" src="/logo.png" alt="logo" /> {/* Next.js static image */}
+        {/* <Image className="h-28 w-28 mb-10" src="/logo.png" alt="logo" /> Next.js static image */}
       </div>
       <div className="bg-purple-400 bg-opacity-30 p-8 rounded-lg shadow-lg min-w-[400px]">
         <h1 className="text-3xl text-purple-400 font-bold mb-6 text-center">Login</h1>

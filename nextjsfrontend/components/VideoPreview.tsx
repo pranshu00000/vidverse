@@ -2,6 +2,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation';
 import { UseVideo } from '@/context/VideoContext';
+import Image from 'next/image';
 interface VideoPreviewProps{
     thumbnail:string;
     video:string;
@@ -30,7 +31,7 @@ const VideoPreview:React.FC<VideoPreviewProps> = (prop) => {
     }
   return (
     <div onClick={handleClick} className='h-60  rounded-2xl m-2 flex flex-col justify-start'>
-        <img className='h-52 rounded-xl' src={prop.thumbnail} alt="" />
+        <Image className='h-52 rounded-xl' src={prop.thumbnail} width={370} height={208} alt="" />
         <h1 className='font-semibold px-3'>{trimDescription(prop.description)}</h1>
     </div>
   )

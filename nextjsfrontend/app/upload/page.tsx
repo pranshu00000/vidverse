@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
 
 export default function Page() {
   const [file, setFile] = useState<File | null>(null);
@@ -135,7 +136,7 @@ export default function Page() {
       {uploadedImageUrl && (
         <div className="mt-4">
           <h3 className="text-xl mb-2">Uploaded Image:</h3>
-          <img 
+          <Image 
             src={uploadedImageUrl} 
             alt="Uploaded to Cloudinary" 
             className="max-w-full h-auto" 
