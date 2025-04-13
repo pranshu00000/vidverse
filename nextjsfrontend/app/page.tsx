@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import VideoPreview from './VideoPreview'; // Ensure VideoPreview is also converted to TSX
-import { useRouter } from 'next/navigation';
 import VideoPreview from '@/components/VideoPreview';
 
 // Define the type for the video data
@@ -17,7 +16,6 @@ interface Video {
 const Homepg: React.FC = () => {
   const [preview, setPreview] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchPreviews = async () => {
@@ -34,7 +32,7 @@ const Homepg: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(preview);
+    console.log(loading);
   }, [preview]);
 
   return (

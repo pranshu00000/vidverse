@@ -1,0 +1,18 @@
+
+services:
+  backend:
+    image: vidverse-backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+  frontend:
+    image: vidverse-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend

@@ -3,7 +3,6 @@ import React from 'react'
 import { UseVideo } from '@/context/VideoContext'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { log } from 'console';
 import { useParams } from 'next/navigation';
 
 interface Video{
@@ -13,7 +12,7 @@ interface Video{
   description:string;
 }
 
-const page = () => {
+const Page = () => {
     const {selectedVideo}=UseVideo()
     const [videoData,setVideoData]=useState(selectedVideo)
     const [loading,setLoading]=useState<boolean>(false)
@@ -74,4 +73,4 @@ const page = () => {
     
 }
 
-export default page
+export default Page
