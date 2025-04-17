@@ -1,7 +1,7 @@
 
 services:
   backend:
-    image: vidverse-backend
+    build: vidverse/backend
     env_file:
       - ./backend/.env
     ports:
@@ -9,7 +9,7 @@ services:
     environment:
       - NODE_ENV=production
   frontend:
-    image: vidverse-frontend
+    build: vidverse/frontend
     ports:
       - "3000:3000"
     environment:
