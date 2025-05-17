@@ -29,5 +29,5 @@ jobs:
 
       - name: Build and push Frontend image
         run: |
-          docker build -f nextjsfrontend/Dockerfile -t pranshu02/frontend:latest frontend
+          docker build -f nextjsfrontend/Dockerfile -t pranshu02/frontend:latest nextjsfrontend
           docker push pranshu02/frontend:latest
