@@ -48,7 +48,7 @@ const Page = () => {
 
             
     return (
-      <div className="bg-violet-50 min-h-screen flex items-center justify-center flex-col p-8 px-4">
+      <div className="bg-gradient-to-tr from-[#120014] via-[rgb(18,0,20)] to-[#6db1e5] min-h-screen flex items-center justify-center flex-col p-8 px-4">
   <div className="max-w-4xl w-full space-y-8">
     <div className="aspect-video bg-black rounded-xl shadow-xl overflow-hidden">
       <video 
