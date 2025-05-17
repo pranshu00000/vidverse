@@ -3,7 +3,6 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface FormData {
   email: string;

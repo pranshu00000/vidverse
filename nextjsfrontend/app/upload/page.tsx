@@ -86,7 +86,7 @@ export default function Page() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 relative">
+    <div className="max-w-md mx-auto p-4 relative ">
       <h2 className="text-2xl mb-4">Upload an Image and Video</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
