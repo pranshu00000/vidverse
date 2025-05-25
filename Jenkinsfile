@@ -34,7 +34,7 @@ pipeline {
     }
     stage('Build Frontend Image') {
       steps {
-        dir('frontend') {
+        dir('nextjsfrontend') {
           script {
             sh "docker build -t ${IMAGE_FRONTEND}:latest ."
           }
