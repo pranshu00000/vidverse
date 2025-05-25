@@ -1,33 +1,62 @@
 pipeline {
-    agent any
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-    }
-    stages {
-        stage('Build Backend') {
-            steps {
-                dir('backend') {
-                    sh 'docker build -t your-dockerhub-username/backend-app .'
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    sh 'docker push your-dockerhub-username/backend-app'
-                }
-            }
-        }
+  agent any
 
-        stage('Build Frontend') {
-            steps {
-                dir('frontend') {
-                    sh 'docker build -t your-dockerhub-username/frontend-app .'
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    sh 'docker push your-dockerhub-username/frontend-app'
-                }
-            }
-        }
+  environment {
+    DOCKER_HUB_USER = 'pranshu02'
+    IMAGE_BACKEND = 'pranshu02/backend'
+    IMAGE_FRONTEND = 'pranshu02/frontend'
+    KUBECONFIG_CREDENTIAL_ID = 'kubeconfig-id-in-jenkins'
+  }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                sh 'kubectl apply -f k8s/'
-            }
-        }
+  stages {
+    stage('Checkout') {
+      steps {
+        git 'https://github.com/pranshu00000/vidverse.git'
+        
+      }
     }
+
+    stage('Build Backend Image') {
+      steps {
+        dir('backend') {
+          script {
+            docker.build("${IMAGE_BACKEND}:latest")
+          }
+        }
+      }
+    }
+
+    stage('Build Frontend Image') {
+      steps {
+        dir('frontend') {
+          script {
+            docker.build("${IMAGE_FRONTEND}:latest")
+          }
+        }
+      }
+    }
+
+    stage('Push Images') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+          sh """
+            echo "$PASS" | docker login -u "$USER" --password-stdin
+            docker push ${IMAGE_BACKEND}:latest
+            docker push ${IMAGE_FRONTEND}:latest
+          """
+        }
+      }
+    }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        withCredentials([file(credentialsId: 'kubeconfig-id-in-jenkins', variable: 'KUBECONFIG')]) {
+          sh """
+            export KUBECONFIG=$KUBECONFIG
+            kubectl apply -f k8s/
+          """
+        }
+      }
+    }
+  }
 }

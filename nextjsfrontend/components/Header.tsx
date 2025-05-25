@@ -12,7 +12,7 @@ const Header = () => {
       <div className="flex items-center space-x-4">
         <button className="text-white focus:outline-none">
           <Image
-            className="h-9 w-9"
+            className="h-9 w-9 "
             src="/logo.png"
             width={20}
             height={20}
