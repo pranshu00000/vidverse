@@ -1,6 +1,10 @@
 pipeline {
-  agent any
-
+agent {
+    docker {
+      image 'docker:24.0.5-dind'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
   environment {
     DOCKER_HUB_USER = 'pranshu02'
     IMAGE_BACKEND = 'pranshu02/backend'
