@@ -31,3 +31,17 @@ jobs:
         run: |
           docker build -f nextjsfrontend/Dockerfile -t pranshu02/frontend:latest nextjsfrontend
           docker push pranshu02/frontend:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_DATA }}" > ~/.kube/config
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/backend backend=pranshu02/backend:latest --record
+          kubectl set image deployment/frontend frontend=pranshu02/frontend:latest --record
